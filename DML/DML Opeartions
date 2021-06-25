@@ -1,0 +1,19 @@
+--DML
+
+
+create table courses(course_code int primary key, course_name varchar(30))
+create table students(id int primary key, name varchar(40),course_code int foreign key references courses(course_code))
+
+--select 
+select * from students
+
+-- insert
+insert into courses values(2121,'SRE')
+insert into students values (1,'usama',2121)
+
+--Update 
+Update students set name ='umer' where name = 'usama'
+
+--Delete 
+Delete from students where name = 'umer'
+
