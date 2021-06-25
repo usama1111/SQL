@@ -1,0 +1,25 @@
+create table practice22(id int, name varchar(33))
+
+create procedure practice222(@id int , @name varchar(34), @statementType varchar(33))
+as
+begin
+if @statementType = 'insert'
+begin
+insert into practice22 values(@id, @name)
+end
+
+if @statementType = 'update'
+begin
+update practice22 set id = @id, name = @name where id = @id 
+end
+
+else if @statementType = 'delete'
+begin
+delete from practice22 where id = @id
+end
+end
+
+exec practice222 1,'usamaa','Update'
+
+select * from practice22
+
