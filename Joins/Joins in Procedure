@@ -1,0 +1,12 @@
+//SCOTT DATABASE
+
+alter procedure test(@empno int)
+as
+begin
+
+select e.name, d.deptno from employee e inner join DEPARTMENT d on e.deptno = d.deptno where e.empno = @empno 
+
+end
+
+exec test 222
+
