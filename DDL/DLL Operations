@@ -1,0 +1,20 @@
+--DDL
+
+-- insert
+
+create table courses(course_code int primary key, course_name varchar(30))
+create table students(id int primary key, name varchar(40),course_code int foreign key references courses(course_code))
+
+
+--Alter 
+
+alter table students add marks int;
+alter table students alter column marks varchar(max)
+alter table students drop column marks
+
+--Drop
+drop table students
+
+--Truncate
+truncate table students
+
