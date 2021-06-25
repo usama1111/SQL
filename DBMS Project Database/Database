@@ -1,0 +1,215 @@
+use PharmacyManagementSystem
+
+CREATE table employee (EmpId int primary key, EmpName varchar(40) not null, Email varchar(30), AdminId int foreign key references Admin (AdminId))
+create table Admin(AdminId int primary key , AdminName varchar (40) not null, AdminContactNo varchar(40) not null )
+insert into Admin values(1001,'Ali',032039008829)
+insert into Admin values(1002,'Adrian',03303208829)
+insert into Admin values(1003,'Wasif',03256208829)
+insert into Admin values(1004,'Brody',032067208829)
+insert into Admin values(1005,'Malcolm',03203209029)
+insert into employee values(201,'falcon','falcon987@gmail.com',1001)
+insert into employee values(202,'phoneix','phoneix987@gmail.com',1003)
+insert into employee values(203,'bathsheba','bathsheba987@gmail.com',1005)
+insert into employee values(204,'ascent','ascent987@gmail.com',1002)
+insert into employee values(205,'drundy','drundy987@gmail.com',1004)
+create TABLE invoice(InvoiceNo int primary key, InvoiceDate Date not null, CustomerId int foreign key references Customer(CustomerId)  )
+create table customer(CustomerId int primary key, CustomerName varchar(40) not null)
+insert into customer values(121,'Sheriff')
+insert into customer values(122,'County')
+insert into customer values(123,'Walker')
+insert into customer values(124,'Masello')
+insert into customer values(125,'Mark')
+insert into customer values(126,'Malinda')
+insert into customer values(127,'Henry')
+insert into customer values(128,'Anny')
+insert into customer values(129,'Arif')
+insert into customer values(130,'Ali')
+insert into customer values(131,'Asad')
+insert into customer values(132,'Zahid')
+insert into customer values(133,'Zeeshan')
+insert into customer values(134,'Marx')
+insert into customer values(135,'Fox')
+drop table product
+insert into invoice values(4201,'2020/02/01',121)
+insert into invoice values(4202,'2021/03/05',124)
+insert into invoice values(4203,'2019/02/12',123)
+insert into invoice values(4204,'2020/08/11',122)
+insert into invoice values(4205,'2021/09/10',125)
+insert into invoice values(4206,'2021/02/01',126)
+insert into invoice values(4207,'2021/03/05',128)
+insert into invoice values(4208,'2021/02/12',127)
+insert into invoice values(4209,'2020/08/11',122)
+insert into invoice values(4210,'2021/09/10',122)
+insert into invoice values(4211,'2020/02/01',129)
+insert into invoice values(4212,'2021/03/05',131)
+insert into invoice values(4213,'2020/02/12',132)
+insert into invoice values(4214,'2020/08/11',121)
+insert into invoice values(4215,'2020/09/10',124)
+
+create table product(ProductId int primary key, ProductName varchar(40) not null, ProductPrice int not null, ExpiryDate Date not null,SupplierId int foreign key references supplier(SupplierId))
+create table Inventory(SupplierId int foreign key references Supplier(SupplierId), ProductId int foreign key references Product(ProductId), CountOfProducts int not null)
+insert into product values(3241,'Panadol Plain Tablet,',15.60,'2019/07/08',2289)
+insert into product values(3251,'Ascard Tablets',15.13,'2019/12/15',2279)
+insert into product values(3261,'Loprin Tablets',17.48,'2019/10/27',2269)
+insert into product values(3271,'Alp Tablets',64,'2021/07/08',2259)
+insert into product values(3281,'Eventone-C Cream',1395,'2020/07/11',2279)
+insert into product values(3291,'Norvasc Tablets',549,'2019/08/07',2289)
+insert into product values(3231,'Folic Acid',58,'2021/05/07',2279)
+insert into product values(3222,'Fefolvit Spansule Capsules',62,'2019/08/04',2269)
+insert into product values(3272,'Rivotril Tablets ',40,'2020/10/07',2259)
+insert into product values(3282,'Lipiget Tablets',210,'2020/8/17',2279)
+insert into product values(3242,'Lochol Tablets',100,'2022/12/27',2289)
+insert into product values(3252,'Statin Tablets',180,'2022/08/18',2279)
+insert into product values(3262,'Descol Tablets',180,'2021/08/13',2269)
+insert into product values(3232,'Alphagan Eye Drop',559,'2021/03/12',2259)
+insert into product values(3233,'SUNNY-D STAT CAP ',300,'2021/08/27',2279)
+insert into product values(3244,'BIOFAD 30GM CREAM',945,'2022/10/31',2289)
+insert into product values(3255,'Aklen Foaming Cleanser',1250,'2023/09/30',2279)
+insert into product values(3266,'Augmentin Tablets ',210.12,'2022/06/30',2269)
+insert into product values(3277,'Nexum Capsules',220,'2021/12/07',2259)
+insert into product values(3288,'Arinac Tablets Forte ',74,'2022/11/17',2279)
+drop table product
+drop table inventory
+insert into Inventory values (2289,3241,789)
+insert into Inventory values (2299,3271,89)
+insert into Inventory values (2279,3251,1099)
+insert into Inventory values (2269,3281,779)
+insert into Inventory values (2259,3261,675)
+insert into Inventory values (2289,3242,549)
+insert into Inventory values (2299,3272,169)
+insert into Inventory values (2279,3252,749)
+insert into Inventory values (2269,3282,1200)
+insert into Inventory values (2259,3262,1505)
+insert into Inventory values (2289,3244,2268)
+insert into Inventory values (2299,3277,2568)
+insert into Inventory values (2279,3255,1379)
+insert into Inventory values (2269,3288,555)
+insert into Inventory values (2259,3266,791)
+create table Sales(CustomerId int foreign key references customer(CustomerId), ProductId int foreign key references Product(ProductId), SalesDate date not null)
+create table Supplier(SupplierId int primary key, SupplierName varchar(40) not null, SupplierEmail varchar(40) not null,)
+insert into sales values (122,3241,'2020/07/08')
+insert into sales values (121,3271,'2020/09/12')
+insert into sales values (123,3281,'2020/10/09')
+insert into sales values (124,3251,'2020/10/01')
+insert into sales values (125,3261,'2020/07/07')
+insert into sales values (126,3242,'2021/03/15')
+insert into sales values (127,3272,'2021/05/02')
+insert into sales values (128,3282,'2021/02/10')
+insert into sales values (130,3252,'2021/01/29')
+insert into sales values (129,3262,'2021/05/05')
+insert into sales values (131,3244,'2020/08/07')
+insert into sales values (132,3277,'2021/03/14')
+insert into sales values (133,3288,'2020/05/27')
+insert into sales values (134,3255,'2021/03/11')
+insert into sales values (135,3266,'2020/11/21')
+insert into Supplier values (2289,'Bobby','Bobby23@gmail.com')
+insert into Supplier values (2299,'Brimstone','Brimstone243@gmail.com')
+insert into Supplier values (2279,'Patrick','Patrick21@gmail.com')
+insert into Supplier values (2269,'Courtney','Courtney123@gmail.com')
+insert into Supplier values (2259,'Seoul','Seoul89@gmail.com')
+select * from EMPLOYEE
+select * from admin
+select * from Product
+select * from invoice
+select * from Inventory
+select * from sales
+select * from Supplier
+
+--Function
+create function ActualPrice(@ProductId int)
+returns table
+as
+return
+(select ProductId, ProductName, ProductPrice=ProductPrice+(ProductPrice*20/100) from Product where productid=@productId)
+
+select * from dbo.ActualPrice(3252)
+select * from dbo.ActualPrice(3244)
+select * from dbo.ActualPrice(3266)
+select * from dbo.ActualPrice(3277)
+select * from dbo.ActualPrice(3288)
+-- Procedure
+create procedure ProductBySupplier
+@SupplierID int,
+@ProductCount int output
+as
+begin
+select @ProductCount = count(ProductID)
+from Product where SupplierID=@SupplierID
+end
+declare @TotalSupplier int
+execute ProductBySupplier 2289 ,@TotalSupplier output
+select @TotalSupplier as 'Total Products'
+
+create procedure ProductAvailable
+@SupplierID int
+as
+begin
+select ProductID as 'Product Available' from Inventory where SupplierID=@SupplierID
+end
+
+ProductAvailable 2289
+
+--Trigger
+create trigger checkOfficeHours  
+on Invoice
+instead of insert,update
+as  
+begin 
+SET NOCOUNT ON --hide rows effected
+if DATENAME(dw,GETDATE()) IN ('Thursday','Sunday')
+   BEGIN
+      RAISERROR ('You can not make a transaction beyond office hours ' ,10,1)
+      ROLLBACK TRANSACTION
+   END
+else
+	begin
+	insert into invoice
+	select * from inserted 
+	end
+end
+
+select DATENAME(hh,GETDATE())
+insert into invoice values (4207,'1/2/2020',121)
+
+-- Views
+create view productDetails
+as
+select ProductId as P_ID,
+	    ProductName as P_Name
+		
+		
+from product;
+select * from productDetails
+
+create view SupplieRDetails as
+select supplierId as Supplier_Id, SupplierEmail as Supplier_Email
+from Supplier
+select * from SupplieRDetails
+
+
+create view SuppliersofEachProduct as
+select count(SupplierID) as SupplierID from product group by SupplierId
+select * from SuppliersofEachProduct
+
+
+create view SupplierSearch as
+select supplierId as Supplier_Id, SupplierEmail as Supplier_Email
+from Supplier where SupplierId = 2289
+
+
+select * from SupplierSearch
+
+
+create view Invoices as
+select c.CustomerId as Customer_Id, c.CustomerName as Customer_Name, i.InvoiceNo as Invoice_Number, i.InvoiceDate as Invoice_Date
+from customer c , invoice i
+where c.CustomerId=i.CustomerId;
+
+select * from Invoices
+-- Joins
+select EmpID, EmpName from Employee e inner join Admin a on e.AdminId = a.AdminId where EmpId = 203
+select EmpID, EmpName, Email from Employee e inner join Admin a on e.AdminId = a.AdminId where EmpId = 203
+select count(EmpID) as 'No of Employess' from employee e inner join Admin a on e.AdminId = a.AdminId 
+select count(ProductID) as 'No of Products Under Each Supplier' from product p inner join Supplier s on p.SupplierId=s.SupplierId group by ProductId
+select ProductId, ProductName from Supplier s inner join Product p on s.SupplierId = p.SupplierId  where ProductId = 3241
+select ProductId, ProductName, ProductPrice from Supplier s inner join Product p on s.SupplierId = p.SupplierId  where ProductId = 3241
